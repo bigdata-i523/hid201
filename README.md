@@ -17,7 +17,7 @@ paper1:
    hid:
    - 201
    title: Big Data analytics and Edge Compting
-   abstract: this paper covers the basics about edgecomputing and its use in bi data analytics
+   abstract: this paper covers the basics about edgecomputing and its use in big data analytics
    url: https://github.com/bigdata-i523/hid201/paper1/paper1.pdf
    type: latex
 ```
