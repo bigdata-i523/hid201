@@ -1,15 +1,11 @@
-# Comments
-
-* Mind the ```quotes and do not forget them```
-* Remove all sections that you have not yet created a directory in github with so our automated scripts do not fail. Only add them if the 
 
 # Owner
 
 ```
 owner:
-    hid: 000
-    name: Gregor von Laszewski
-    url: https://github.com/bigdata-i523/sample-hid000
+    hid: 201
+    name: Arnav
+    url: https://github.com/bigdata-i523/hid201
 ```
 
 # Paper 1
@@ -17,14 +13,13 @@ owner:
 ```
 paper1:
    author: 
-   - Gregor von Laszewski
-   - Fugang Wang
+   - Arnav
    hid:
-   - 000
-   - 001
-   title: This is my paper about xyz
-   abstract: This paper showcases tis and that and the other
-   url: https://github.com/bigdata-i523/sample-hid000/paper1/paper1.pdf
+   - 201
+   title: Big Data analytics and Edge Compting
+   abstract: this paper covers the basics about edgecomputing and its use in bi data analytics
+   url: https://github.com/bigdata-i523/hid201/paper1/paper1.pdf
+   type: latex
 ```
    
 # Paper 2
