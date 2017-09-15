@@ -4,7 +4,7 @@
 ```
 owner:
     hid: 201
-    name: Arnav Arnav
+    name: Arnav, Arnav
     url: https://github.com/bigdata-i523/hid201
 ```
 
@@ -27,7 +27,7 @@ paper1:
 ```
 paper2:
    author: 
-   - Arnav Arnav
+   - Arnav, Arnav
    hid:
    - 201
    title: This is my paper about the other abc
