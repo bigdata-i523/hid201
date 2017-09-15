@@ -20,6 +20,7 @@ paper1:
    abstract: this paper covers the basics about edgecomputing and its use in big data analytics
    url: https://github.com/bigdata-i523/hid201/paper1/paper1.pdf
    type: latex
+   status: in progress
 ```
    
 # Paper 2
@@ -32,7 +33,9 @@ paper2:
    - 201
    title: This is my paper about the other abc
    abstract: This paper showcases tis and that and the other in regards to abc
-   url: https://github.com/bigdata-i523/sample-hid000/paper2/paper2.pdf   
+   url: https://github.com/bigdata-i523/sample-hid000/paper2/paper2.pdf
+   type: latex
+   status: not started
 ```
 
 # Project 
@@ -51,5 +54,7 @@ paper2:
    title: Benchmarking a BigData Docker deployment
    abstract: This paper showcases tis and that and the other 
    url: https://github.com/bigdata-i523/sample-pid000/project/report.pdf
+   type: latex
+   status: not started
 ```
    
