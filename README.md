@@ -4,7 +4,7 @@
 ```
 owner:
     hid: 201
-    name: Arnav
+    name: Arnav Arnav
     url: https://github.com/bigdata-i523/hid201
 ```
 
@@ -13,7 +13,7 @@ owner:
 ```
 paper1:
    author: 
-   - Arnav
+   - Arnav Arnav
    hid:
    - 201
    title: Big Data analytics and Edge Compting
@@ -27,9 +27,9 @@ paper1:
 ```
 paper2:
    author: 
-   - Gregor von Laszewski
+   - Arnav Arnav
    hid:
-   - 000
+   - 201
    title: This is my paper about the other abc
    abstract: This paper showcases tis and that and the other in regards to abc
    url: https://github.com/bigdata-i523/sample-hid000/paper2/paper2.pdf   
