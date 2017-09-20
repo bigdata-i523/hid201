@@ -13,7 +13,7 @@ owner:
 ```
 paper1:
    author: 
-   - Arnav Arnav
+   - Arnav, Arnav
    hid:
    - 201
    title: Big Data analytics and Edge Compting
@@ -31,30 +31,27 @@ paper2:
    - Arnav, Arnav
    hid:
    - 201
-   title: This is my paper about the other abc
-   abstract: This paper showcases tis and that and the other in regards to abc
-   url: https://github.com/bigdata-i523/sample-hid000/paper2/paper2.pdf
+   title: To be decided
+   abstract: 
+   url:
    type: latex
    status: not started
 ```
 
 # Project 
 
-We will assign new pids for you when we approve the project and reports   
-Just use one type and delete the line with 
-
+To be decided
 ```
 paper2:
    type: project
-   type: report
    author: 
-   - Gregor von Laszewski
+   - Arnav, Arnav
    hid:
-   - 000
-   title: Benchmarking a BigData Docker deployment
-   abstract: This paper showcases tis and that and the other 
-   url: https://github.com/bigdata-i523/sample-pid000/project/report.pdf
-   type: latex
-   status: not started
+   - 201
+   title: 
+   abstract: 
+   url: 
+   type: 
+   status: 
 ```
    
