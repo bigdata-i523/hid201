@@ -16,8 +16,8 @@
 
 * 09/5/17 - 09/8/17 Read and Watched introduction videos upto section 4
 * 09/11/17 Watched video for introducition section 5 (Disruption of old favourites)
-* 09/11/17 - 09/14/17 Watched Introduction videos upto section 9
-
+* 09/11/17 - 09/14/17 Watched Introduction videos upto section 9 (Physics informatics)
+* 09/18/17 - 09/20/17 watched Introduction videos up to section (Conclusions)
 # Practice
 
 * 08/25/17 Set VM , python and pyenv
@@ -25,9 +25,11 @@
 * 08/30/17 Enabled Python 2 and 3 via pyenv on ubuntu
 * 08/30/17 instaled pyenv and set up python 2.7 and 3.6.2 in different folders using pyenv
 * 09/11/17 Read and Watched videos about code management sectin 4.4
+* 09/20/17 Started working on MQTT exercise
 
 # Writing
 
 * 09/11/17 read about emacs 
 * 09/16/17 Read about Latex and installed latex
 * 09/16/17 Installed Jabref
+* 09/19/17 Added Important Links for Paper 1
