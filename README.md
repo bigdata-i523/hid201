@@ -18,7 +18,7 @@ paper1:
    - 201
    title: Big Data analytics and Edge Compting
    abstract: this paper covers the basics about edgecomputing and its use in big data analytics
-   url: https://github.com/bigdata-i523/hid201/paper1/paper1.pdf
+   url: https://github.com/bigdata-i523/hid201/paper1/report.pdf
    type: latex
    status: in progress
 ```
@@ -31,27 +31,25 @@ paper2:
    - Arnav, Arnav
    hid:
    - 201
-   title: To be decided
+   title: 
    abstract: 
-   url:
+   url: 
    type: latex
    status: not started
 ```
 
 # Project 
 
-To be decided
 ```
-paper2:
+project:
    type: project
    author: 
    - Arnav, Arnav
-   hid:
+   pid:
    - 201
-   title: 
+   title:
    abstract: 
    url: 
-   type: 
-   status: 
-```
+   type: latex
+   status: not started
    
