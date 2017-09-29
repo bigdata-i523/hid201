@@ -17,7 +17,7 @@ yaml_lines = []
 yaml_content = []
 
 #read lines between the ``` markers
-print "The lines between ``` markers are :"
+print "The lines between ``` markers are :\n"
 s = ''
 for line in file:
 	if line.startswith("```") and between_markers:
@@ -32,21 +32,22 @@ for line in file:
 			s += line
 			print line
 
-#check for the tab
+#check if a yaml line has TAB
 for line in yaml_lines:
-	if line.startswith("\t"):
+	if "\t" in line:
 		print "ERROR!! in line :"
-		print line, "starts with a tab.. use spaces\n"
-
+		print line, "contains a TAB.. use spaces\n"
 
 
 #read content as yaml strings
 #print dictionaries
 #check and display errors
-print "Dictionaries in the file are:"
+print "\nDictionaries in the file are:\n"
 try:
 	for data in yaml_content:
 		dictionary = yaml.load(data)
 		print dictionary
 except Exception as e:
 	print e
+else:
+	print "\n\tNo errors were found. Format seems to be correct"
