@@ -28,6 +28,7 @@
 * 08/30/17 instaled pyenv and set up python 2.7 and 3.6.2 in different folders using pyenv
 * 09/11/17 Read and Watched videos about code management sectin 4.4
 * 09/20/17 Started working on MQTT exercise
+* 09/28/17 Added python code to check README format as suggested on piazza <a href = "https://github.com/bigdata-i523/hid201/blob/master/python_stuff/parse_readme.py"> here </a>
 
 # Writing
 
