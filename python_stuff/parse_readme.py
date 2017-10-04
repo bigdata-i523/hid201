@@ -20,6 +20,10 @@ yaml_content = []
 print "The lines between ``` markers are :\n"
 s = ''
 for line in file:
+	if "```" in line and not line.startswith("```"):
+		print line
+		print "line must start with ``` markers and not white spaces"
+		break
 	if line.startswith("```") and between_markers:
 		between_markers = False
 		yaml_content.append(s)
