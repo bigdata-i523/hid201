@@ -30,7 +30,8 @@
 * 09/20/17 Started working on MQTT exercise
 * 09/28/17 Added python code to check README format as suggested on piazza <a href = "https://github.com/bigdata-i523/hid201/blob/master/python_stuff/parse_readme.py"> here </a>
 * 10/01/17 - 10/04/17 set up raspberry pi with raspbean using noobs and installed GrovePi and tried some sensors.
-
+* 10/05/17 Raspberry pi experiment, documentation added <a href=""> here </a>
+* 10/05/17 started contributing on cloudmesh.pi
 
 # Writing
 
