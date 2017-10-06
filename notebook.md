@@ -42,11 +42,11 @@
 
 # Meetings
 
-* 08/25/17 Attended class meeting for residential students
-* 09/01/17 Attended class meeting for residential students
-* 09/08/12 Attended class meeting for residential students
-* 09/15/17 Attended class meeting for residential students
-* 09/22/17 Attended class meeting for residential students
+* 08/25/17 Meeting: Attended class meeting for residential students
+* 09/01/17 Meeting: Attended class meeting for residential students
+* 09/08/12 Meeting: Attended class meeting for residential students
+* 09/15/17 Meeting: Attended class meeting for residential students
+* 09/22/17 Meeting: Attended class meeting for residential students
 
 # Location
 
