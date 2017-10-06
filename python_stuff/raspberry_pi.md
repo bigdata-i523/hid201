@@ -1,8 +1,7 @@
 ## Using Raspberry pi
 
 ### Setup instructions
-* link to setup with monitor
-* link to headless setup
+The easiest way to set up raspbian on the pi is using NOOBS , which can be found on the github page <a href = "https://github.com/raspberrypi/noobs">here</a>
 
 ### Change Default password
 Once the raspberry pi is set up, log in to the raspberry pi,
@@ -27,7 +26,7 @@ this will give you the path where python is installed
 * to install gpio support type command sudo apt-get install python-rpi.gpio
 * use python3-rpi.gpio for python 3
 
-more details can be found at : https://www.raspberrypi.org/documentation/usage/python/more.md
+more details can be found <a href="https://www.raspberrypi.org/documentation/usage/python/more.md">here</a>
 
 ### Some elementary python
 * open terminal on raspbery pi and type python to open python2 shell
@@ -48,12 +47,13 @@ change default gateway of the network profile to pi's ip address
 change pis default gateway to pis ip address
 connect to wifi via pi
 
-or just directly use monitor to connect to wifi
-
-set interfaces?
-set static ips?
+* connect raspberry pi to a monitor viaHDMI cable and attach power cable to boot the pi
+* connect a keyboard and mouse with help of the usb port
+* go to the network settings
+* select the wifi access point that you need to connect to 
+* enter the password when asked
+* you wil now be connected to the network 
 
 We sould try to use IU secure as it is an authenticated access to the internet
 attwifi is an open connection and anyone can connect to it, some sites which require https will warn you and may not open
-also connecting to open wifi networks increases the risk of attacks like honeypot or evil twin acess point
-
+also connecting to open wifi networks increases the risk of attacks like evil twin acess point
