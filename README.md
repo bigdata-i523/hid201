@@ -20,7 +20,7 @@ paper1:
    abstract: this paper covers the basics about edgecomputing and its use in big data analytics
    url: https://github.com/bigdata-i523/hid201/paper1/report.pdf
    type: latex
-   status: in progress
+   status: 70%
    chapter: Edge Computing
 ```
    
