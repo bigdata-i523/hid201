@@ -20,7 +20,7 @@ paper1:
    abstract: This paper describes edge computing and some important recent developments
    url: https://github.com/bigdata-i523/hid201/paper1/report.pdf
    type: latex
-   status: 90%
+   status: 100%
    chapter: Edge Computing
 ```
    
