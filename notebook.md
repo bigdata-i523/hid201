@@ -39,6 +39,7 @@
 * 09/16/17 Read about Latex and installed latex
 * 09/16/17 Installed Jabref
 * 09/19/17 Added Important Links for Paper 1
+* 10/08/17 Completed Paper 1
 
 # Meetings
 
