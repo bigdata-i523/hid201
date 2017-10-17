@@ -19,6 +19,7 @@
 * 09/11/17 - 09/14/17 Watched Introduction videos upto section 3.1.1.9 (Physics informatics)
 * 09/18/17 - 09/20/17 watched Introduction videos up to section 3.1.1.15 (Conclusions)
 * 09/23/17 - 09/28/17 Read and Watched videos for section 3.2.1 (Data Science generics and Commercial Data Deluge)
+* 10/05/17 - 10/13/17 Finished watching videos on overviw of data science (section 3.2)
 
 # Practice
 
@@ -32,6 +33,8 @@
 * 10/01/17 - 10/04/17 set up raspberry pi with raspbean using noobs and installed GrovePi and tried some sensors.
 * 10/05/17 Raspberry pi experiment, documentation added <a href="https://github.com/bigdata-i523/hid201/blob/master/python_stuff/raspberry_pi.md"> here </a>
 * 10/05/17 started contributing on cloudmesh.pi
+* 10/05/17 added classes for LED bar
+* 10/07/17 - 10/13/17 created classes for 4 digit display, grove speaker, uv sensor and air quality sensor
 
 # Writing
 
@@ -48,6 +51,8 @@
 * 09/08/12 Meeting: Attended class meeting for residential students
 * 09/15/17 Meeting: Attended class meeting for residential students
 * 09/22/17 Meeting: Attended class meeting for residential students
+* 09/29/17 Meeting: Attended class meeting for residential students
+* 10/13/17 Meeting: Attended class meeting for residential students
 
 # Location
 
