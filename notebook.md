@@ -35,7 +35,7 @@
 * 10/05/17 started contributing on cloudmesh.pi
 * 10/05/17 added classes for LED bar
 * 10/07/17 - 10/13/17 created classes for 4 digit display, grove speaker, uv sensor and air quality sensor
-
+* 10/19/17 setup mqtt on raspberry pi using code in sample-hid000/experiments repo
 # Writing
 
 * 09/11/17 read about emacs 
@@ -43,6 +43,7 @@
 * 09/16/17 Installed Jabref
 * 09/19/17 Added Important Links for Paper 1
 * 10/08/17 Completed Paper 1
+* 10/18/17 Topic for paper 2 approved
 
 # Meetings
 
