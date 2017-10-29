@@ -36,6 +36,8 @@
 * 10/05/17 added classes for LED bar
 * 10/07/17 - 10/13/17 created classes for 4 digit display, grove speaker, uv sensor and air quality sensor
 * 10/19/17 setup mqtt on raspberry pi using code in sample-hid000/experiments repo
+* 10/29/17 polyfit experiment
+
 # Writing
 
 * 09/11/17 read about emacs 
@@ -55,6 +57,8 @@
 * 09/29/17 Meeting: Attended class meeting for residential students
 * 10/13/17 Meeting: Attended class meeting for residential students
 * 10/20/17 Meeting: Attended class meeting for residential students
+* 10/27/17 Meeting: Attended class meeting for residential students
+
 # Location
 
 * Address: Bloomington IN, 3209 E 10th Street
