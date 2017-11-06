@@ -46,6 +46,7 @@
 * 09/19/17 Added Important Links for Paper 1
 * 10/08/17 Completed Paper 1
 * 10/18/17 Topic for paper 2 approved
+* 11/06/17 completed a draft of paper 2
 
 # Meetings
 
