@@ -116,25 +116,27 @@ either at the same time nor on the same hardware
 \cite{hivemq-details}.
 
 
+\subsection{Topics}
+
+MQTT implements a hierarchy of topics that are relates
+to all messages. These topics are recognised by strings separated by a
+forward-slash ( / ), where each part represents a different topic
+level. This is a common model introduced in file systems but also in
+internet URLs. 
+
+A topic looks therefore as follows: {\em topic-level0/topic-level1/topic-level2}.
+
+
 %
 % GREGOR WILL LOOK AT REST
 %
 
 
-\subsection{Topics}
-
-MQTT uses a cleverly designed hierarchy of topics, which are related
-to all messages. These topics are recognised by strings separated by a
-forward-slash ( / ) and each part representing a different topic
-level.
-
-For example {\em topic-level0/topic-level1/topic-level2}.
-
 All subscribers subscribe to different topics via the broker.
-Subscribing to {\em topic-level0} allows the subscriber to recieve all
+Subscribing to {\em topic-level0} allows the subscriber to receive all
 messages that are associated with topics that start with {\em
-  topic-level0}. This allows subscribrs to filter what messages to
-recieve based on the topic hierarchy. Thus, when a publisher publishes
+  topic-level0}. This allows subscribers to filter what messages to
+receive based on the topic hierarchy. Thus, when a publisher publishes
 a message related to a topic to the broker, the message is forwarded
 to all the clients that have subscribed to the topic of the message or
 a topic that has a lower depth of hierarchy \cite{hivemq-details}
@@ -151,12 +153,12 @@ appropriate action when a certain message is received
 \subsection{Callbacks}
 
 One of the main advantages of using MQTT is that it allows
-asynchronous behaviour withthe help of callbacks. Both the publisher
+asynchronous behaviour with the help of callbacks. Both the publisher
 and subscriber do not have to wait to publish a message or receive
 one, and can perform other tasks in a non blocking manner
 \cite{hivemq-details} \cite{python-paho-mqtt}.
 
-The paho-mqtt pachage for python provides callbacks methods like
+The paho-mqtt package for python provides callbacks methods like
 on-connect(), on-message() and on-disconnect(), which are fired when
 the connection to the broker is complete, a message is received from
 the broker, and when the client is disconnected from the broker
@@ -174,9 +176,9 @@ application. Three basic levels of QoS are supported by the protocol,
 Atmost-once (QoS level 0), Atleast-once (QoS level 1) and Atmost-once
 (QoS level 2) \cite{hivemq-qos}\cite{python-paho-mqtt}.
 
-The QoS level of 0 can be used in applcations where some droped
+The QoS level of 0 can be used in applications where some dropped
 messages may not affect the application. Under this QoS level, the
-broker forwards a message to the sunscribers only once and does not
+broker forwards a message to the subscribers only once and does not
 wait for any acknowledgement \cite{hivemq-qos}
 \cite{python-paho-mqtt}.
 
@@ -221,12 +223,12 @@ been standardized for secured MQTT connections''
 \cite{iot-design-mqtt-security}.
 
 Using TLS/SSL security however comes at an additional cost. If the
-connections are shortlived then most of the time can be spent in the
-handshake itself, ehich may take up few kilobytes of bandwidth. In
-case the connections are shortlived, temoporary session IDs and
+connections are short-lived then most of the time can be spent in the
+handshake itself, which may take up few kilobytes of bandwidth. In
+case the connections are short-lived, temporary session IDs and
 session tickets can be used to resume a session instead of repeating
 the handshake process. If the connections are long term, the overhead
-of the handshake is negligibe and TLS/SSL security should be used
+of the handshake is negligible and TLS/SSL security should be used
 \cite{iot-design-mqtt-security}\cite{mqtt-sec-ssl}.
 
 \subsection{Using OAuth}
@@ -237,22 +239,22 @@ protocol itself does not include authorization, many MQTT brokers
 include authorization as an additional feature
 \cite{ibm-mqtt-security}. OAuth2.0 uses JSON Web Tokens which contain
 information about the token ans the user and are signed by a trusted
-authorisation server \cite{hivemq-security-oauth}.
+authorization server \cite{hivemq-security-oauth}.
 
 When connecting to the broker this token can be used to check whether
 the client is authorised to connect at this time or not. Additionally
 the same validations can be used when publishing or subscribing to the
 broker. The broker may use a third party resource such as LDAP
-(lightweight directiry access protocol) to look up authorisations for
+(lightweight directory access protocol) to look up authorizations for
 the client \cite{hivemq-security-oauth}. Since there can be a large
-number of clients and it can become impractical to authorise everyone,
-clients may be grouped and the authorizations may be cheked for each
+number of clients and it can become impractical to authorize everyone,
+clients may be grouped and the authorizations may be checked for each
 group \cite{ibm-mqtt-security}.
   
 \section{Integration with Other Services}
 
-As the infividual IoT devices perform their respective functions in
-the sensor network, a lot of data is generated whic needs to be
+As the individual IoT devices perform their respective functions in
+the sensor network, a lot of data is generated which needs to be
 processed. MQTT allows easy integration with other services, that have
 been designed to process this data.
 
@@ -266,13 +268,13 @@ fault tolerant manner \citep{apache-storm-wiki}.
 ELK stack (elastic-search, logstash and kibana) is an opensource
 project designed for scalability which contains three main software
 packages, the {\em elastic-search} search and analytics engine, {\em
-  logstash} which is a data colection pipeline and {\em kibana} which
+  logstash} which is a data collection pipeline and {\em kibana} which
 is a visualization dashboard \cite{elk-stack}. Data from an IoT
 network can be collected, analysed and visualized easily with the help
 of the ELK stack as shown in \cite{mqtt-elasticsearch-setup} and
 \cite{kibana-mqtt-analysis}.
 
-MQTT broker services can be utilised for enterprise and production
+MQTT broker services can be utilized for enterprise and production
 environments. EMQ (Erlang MQTT Broker) provides a highly scalable,
 distributed and reliable MQTT broker that can be used in
 enterprise-grade applications \cite{erlang-mqtt-broker}.
@@ -295,9 +297,9 @@ were connected to an isolated local network.
 
 Grovepi shields for the raspberry pis, designed by Dexter Industries
 were used on each of the raspberry pis to connect the actuators as
-they allow wasy connections ot the raspberry pi board \cite{grovepi}.
+they allow easy connections ot the raspberry pi board \cite{grovepi}.
 The actuators used were Grove relays \cite{grove-relay} and Grove LEDs
-\cite{grove-led} which respond to the messages recieved via MQTT.
+\cite{grove-led} which respond to the messages received via MQTT.
 
 To control the leds and relays, the python library cloudmesh.pi
 \cite{cloudmesh.pi}, developed at Indiana University was used. The
@@ -316,11 +318,11 @@ The two raspberry pis subscribe connect to the broker and subscribe
 with different topics. The raspberry pis wait for any messages from
 the broker. A publisher program that connects to the broker publishes
 messages to the broker for the topics that the two raspberry pis had
-registered. Each raspberry pi recieves the correcponding message and
+registered. Each raspberry pi receives the corresponding message and
 turns the LEDs or relays on or off as per the message.
 
 On a local network this process happens in near real time and no
-delays were observed. Eclipse iot MQTT broker ({\em iot.eclipse.org})
+delays were observed. Eclipse IoT MQTT broker ({\em iot.eclipse.org})
 was also tried which also did not result in any significant delays.
 
 Thus it is observed that two raspberry pis can be easily controlled
