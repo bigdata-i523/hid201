@@ -20,6 +20,7 @@
 * 09/18/17 - 09/20/17 watched Introduction videos up to section 3.1.1.15 (Conclusions)
 * 09/23/17 - 09/28/17 Read and Watched videos for section 3.2.1 (Data Science generics and Commercial Data Deluge)
 * 10/05/17 - 10/13/17 Finished watching videos on overviw of data science (section 3.2)
+* 10/20/17 - 11/9/17 Finished watching videos for sections 3.3, 3.4, and 3.5 
 
 # Practice
 
@@ -37,6 +38,7 @@
 * 10/07/17 - 10/13/17 created classes for 4 digit display, grove speaker, uv sensor and air quality sensor
 * 10/19/17 setup mqtt on raspberry pi using code in sample-hid000/experiments repo
 * 10/29/17 polyfit experiment
+* 11/12/17 perceptron problem experiment
 
 # Writing
 
@@ -47,6 +49,7 @@
 * 10/08/17 Completed Paper 1
 * 10/18/17 Topic for paper 2 approved
 * 11/06/17 completed a draft of paper 2
+* 11/12/17 review updates in paper 2
 
 # Meetings
 
