@@ -21,6 +21,7 @@
 * 09/23/17 - 09/28/17 Read and Watched videos for section 3.2.1 (Data Science generics and Commercial Data Deluge)
 * 10/05/17 - 10/13/17 Finished watching videos on overviw of data science (section 3.2)
 * 10/20/17 - 11/9/17 Finished watching videos for sections 3.3, 3.4, and 3.5 
+* 11/16/17 Watched video on SKA
 
 # Practice
 
@@ -39,6 +40,7 @@
 * 10/19/17 setup mqtt on raspberry pi using code in sample-hid000/experiments repo
 * 10/29/17 polyfit experiment
 * 11/12/17 perceptron problem experiment
+* 11/17/17 perform clustering on sechhi disk data data.xlsx file
 
 # Writing
 
@@ -62,6 +64,8 @@
 * 10/13/17 Meeting: Attended class meeting for residential students
 * 10/20/17 Meeting: Attended class meeting for residential students
 * 10/27/17 Meeting: Attended class meeting for residential students
+* 11/10/17 Meeting: Attended class meeting for residential students 
+* 11/17/17 Meeting: Attended class meeting for residential students 
 
 # Location
 
