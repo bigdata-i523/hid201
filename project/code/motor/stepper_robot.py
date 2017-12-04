@@ -18,8 +18,8 @@ class StepperRobot:
 		move the robot forward
 		turn both motors forward
 		"""
-		t_1 = Thread(target= self.left.forward, args=(step_count,))
-		t_2 = Thread(target= self.right.backward, args=(step_count,))
+		t_1 = Thread(target= self.left.backward, args=(step_count,))
+		t_2 = Thread(target= self.right.forward, args=(step_count,))
 		t_1.start()
 		t_2.start()
 
@@ -28,8 +28,8 @@ class StepperRobot:
 		move the robot backward
 		turn both motors backward
 		"""
-		t_1 = Thread(target= self.left.backward, args=(step_count,))
-		t_2 = Thread(target= self.right.forward, args=(step_count,))
+		t_1 = Thread(target= self.left.forward, args=(step_count,))
+		t_2 = Thread(target= self.right.backward, args=(step_count,))
 		t_1.start()
 		t_2.start()
 

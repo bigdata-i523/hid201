@@ -2,6 +2,7 @@ import grovepi
 import time
 import paho.mqtt.client as mqtt
 from stepper_robot import StepperRobot
+import sys
 
 def on_connect(client, user_data, flags, rc):
 	if rc == 0:

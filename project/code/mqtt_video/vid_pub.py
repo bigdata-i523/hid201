@@ -33,7 +33,7 @@ if len(sys.argv) > 1:
 else:
 	broker = '10.0.0.8'
 
-client.connect('broker')
+client.connect(broker)
 client.loop_start()
 
 
