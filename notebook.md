@@ -45,6 +45,7 @@
 * 11/17/17 perform clustering on sechhi disk data data.xlsx file
 * 11/18/17 - 11/24/17 complete code for project, deployment remaining
 * 2/12/17 complete deployment using Makefile
+* 4/12/17 updated the code and completed the project
 
 # Writing
 
@@ -57,6 +58,7 @@
 * 11/06/17 completed a draft of paper 2
 * 11/12/17 review updates in paper 2
 * 1/12/17 draft of project report
+* 4/12/17 completed project report
 
 # Meetings
 
