@@ -49,7 +49,7 @@ project:
     pid:
         - 201
     status: not started
-    title: null
+    title: edge computing application using mqtt and raspberry pi
     type: latex
     url: null
     

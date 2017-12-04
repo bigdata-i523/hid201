@@ -1,0 +1,296 @@
+\documentclass[sigconf]{acmart}
+
+\input{format/i523}
+
+\begin{document}
+\title{IoT Application Using MQTT and Raspberry Pi Robot Car}
+
+\author{Arnav Arnav}
+\affiliation{%
+  \institution{Indiana University Bloomington}
+  \city{Bloomington} 
+  \state{Indiana} 
+  \postcode{47408}
+  \country{USA}
+}
+\email{aarnav@iu.edu}
+
+
+% The default list of authors is too long for headers}
+%\renewcommand{\shortauthors}{G. v. Laszewski}
+
+
+\begin{abstract}
+As the number of connected edge devices increases there is a need for fast 
+comunication between these devices, and to analyse the data collected by
+these devices, which is made possible by the use of a scalable lightweight 
+communicatoin protocol such as MQTT, which is easy to use, data agnostic, and 
+application independent.
+We look at one such appllication of the protocol, to control a robot car remotely,
+over wireless network, navigating with the help of a raspberry pi camera on the car.
+
+\end{abstract}
+
+\keywords{i523, HID201, Edge Computing, Raspberry Pi, MQTT, Robot Car, IoT}
+
+
+\maketitle
+
+
+\section{Introduction}
+
+As the number of edge devices increases, and sensor networks become more and more common in Internet of Things (IoT) applications, the need arises to allow these resource constrained devices to communicate with each other in a power efficient and secure manner. In many cases these devices may not be able to process trafitional HTTP requests efficiently, and as the number of devices increases, sending an HTTP request to each of the dvices in order to get data may not be efficient \cite{mqtt-vs-http}\cite{hivemq-website}.
+
+Message Queue Telemetry Transport (MQTT) is a lightweight  machine to machine (M2M) messaging protocol, that uses a client/server based publish/subscribe model and is ideal for IoT applications. The protocol has been designed on top of TCP/IP protocol for us in situations where network bandwidth ad available memory are limited \cite{mqtt-wiki}\cite{mqtt-official}.
+The Eclipse Paho Project curently provides suport for MQTT \cite{eclipse-mosquitto}. MQTT clients are available for various languages like Python, C, and Lua.
+
+We look at one such application here that uses MQTT for communication between a raspberry pi and a desktop. The raspberry pi controls the stepper motors of the robot car according to the message it recieves over mqtt, and drives the car accordigly. another program running on the raspberry pi uses the rasperry pi onboard camera to capture pictures and send them back to the desktop to helo in navigation. Thus we create a simple robot car that can be used remotely for monitoring purposes. The robot car can be controlled from anywhere in the world, as long as both the controlling device (desktop) and the raspberry pi can conect to the MQTT broker.
+
+We can use multiple such cars and controlling devices to control the cars independently or from a commn device to drive mltiple cars together, thus controlling a swarm of cars. As these cars may be using different platforms like raspberry pi or arduino, Using MQTT allows us to write the controller program independent of the subscriber programs running on the different robot cars and even in different languages. All that is needed to control a car is that the subscriber can understand the messages sent by the controller.
+
+\section{Related Work}
+There have been many edge computing applications that involve robot cars or swarm of cars.
+
+\cite{sentdex-pi-car} provides an example of a raspberry pi car that uses distance sensor, and face detection on the raspberry pi 2. The car is controlled over wifi and is built using the GoPiGo robot car kit \cite{gopigo}
+
+Zheng Wang used raspberry pi in \cite{self-driving-rc-car} to build a sophisticated self driving car that can detect stop signs and traffic signals and drive appropriately on a small test track. The car has a camera and a distance sensor that stream data to a TCP server running on a desktop. The system uses Haar Cascades provided in opencv to detect objects like stop signs and traffic signals and a trained neural network which uses the image to predigt the direction in which the car should move. The distance is calculated using the image from the raspberry pi camera with the help of a monocular vision method proposed by Chu, Ji, Guo, Li and Wang in 2004 \cite{monocular}.
+ 
+As the part of Eclipse IoT open challenge \cite{bitreactive} built a robot car that is controlled using the Constrained Application Protocol (CoAP) which snaps images and communicates the images over MQTT
+
+OpenHAB provides a vendor neutral platform that allows users to integrate vatious home automation systema and provides an application interface to control those devices \cite{openhab}. It allows integration of various devices with MQTT.
+
+The FloodNet project at University of Southampton \cite{floodnet} aims at ``providing a pervasive, continuous embedded monitoring presence''. The system is intelligent and obtains `` environmental self-awreness and resilience to ensure robust transmission of data'', ensuring data quality and allowing exploration of environments in new ways. The project uses MQTT for communicating data from the sensors on field to visualization and simulation applications.
+
+As a part of IBM's Extreme Blue projects, Say it Sign it \cite{SiSi} is a sophisticated, innovative speech to sign language translation system. The application uses speech recognition and renders an avatar that signs the corresponding words in British sign Language, using MQTT and microbroker for communication.
+
+
+\section{Technologies and Hardware}
+The project uses MQTT to communicate between a controller running on a desktop and a raspberry pi that drives the robot car with the help of stepper motors. We describe these technologies in detail.
+
+\subsection{MQTT}
+MQTT works via a publish-subscribe model that contains 3 entities: (1) a
+publisher, that sends a message, (2) a broker, that maintains queue of all
+messages based on topics and (3) multiple subscribers that subscribe to
+various topics they are interested in \cite{how-mqtt-works}.
+
+This allows for decoupling of functionality at various levels. The
+publisher and subscriber do not need to be close to each other and do
+not need to know each others identity. They need only to know the
+broker, as the publisher and the subscribers do not have to be running
+either at the same time nor on the same hardware
+\cite{hivemq-details}.
+
+MQTT implements a hierarchy of topics that are related
+to all messages. These topics are recognised by strings separated by a
+forward-slash ( / ), where each part represents a different topic
+level. This is a common model introduced in file systems but also in
+internet URLs. 
+
+A topic looks therefore as follows: {\em topic-level0/topic-level1/topic-level2}.
+
+All subscribers subscribe to different topics via the broker.
+Subscribing to {\em topic-level0} allows the subscriber to receive all
+messages that are associated with topics that start with {\em
+topic-level0}.
+
+This is different from traditional message queues as the message is
+forwarded to multiple subscribers, and allows for a more flexible
+approach with the help of topics \cite{hivemq-details}. The basic
+steps in an MQTT client application include connecting to the broker,
+subscribing to some topics, waiting for messages and performing the
+appropriate action when a certain message is received
+\cite{mqtt-wiki}.
+
+MQTT allows the publisher and subscriber to respond to messages withthe help of callbacks that are executed on different events ,in a non-blocking manner. The paho-mqtt package for python provides callbacks methods like on-connect(), on-message() and on-disconnect(), which are fired when
+the connection to the broker is complete, a message is received from
+the broker, and when the client is disconnected from the broker
+respectively. These methods are used in conjunction with the
+loop-start() and loop-end() methods which start and end an
+asynchronous loop that listens for these events and fires the relevant
+callbacks, allowing the clients to perform other tasks
+\cite{python-paho-mqtt}.
+
+MQTT has been designed to be flexible and options are provided to
+easily change the quality of service (QoS) as required by the
+application. Three basic levels of QoS are supported by the protocol,
+Atmost-once (QoS level 0), Atleast-once (QoS level 1) and Atmost-once
+(QoS level 2) \cite{hivemq-qos}\cite{python-paho-mqtt}.
+
+The QoS level of 0 can be used in applications where some dropped
+messages may not affect the application. Under this QoS level, the
+broker forwards a message to the subscribers only once and does not
+wait for any acknowledgement \cite{hivemq-qos}
+\cite{python-paho-mqtt}.
+
+The QoS level of 1 can be used in situations where the delivery of all
+messages is important and the subscriber can handle duplicate
+messages. Here the broker keeps on resending the message to a
+subscriber after a certain timeout until the first acknowledgement is
+received. A QoS level of 2 should be used in cases where all messages
+must be delivered and no duplicate messages should be allowed. In this
+case the broker sets up a handshake with the subscriber to check for
+its availability before sending the message \cite{hivemq-qos}
+\cite{python-paho-mqtt}.
+
+The MQTT specification uses TCP/IP to deliver the messaged to the
+subscribers, but it does not provide any form of security by default
+to make is useful for resource constrained IoT devices. ``It allows
+the use of username and password for authentication, but by default
+this information is sent as plain text over the network, making it
+susceptible to man-in-the middle attacks''
+\cite{iot-design-mqtt-security} \cite{mqtt-sec-ssl}. Therefore, in
+sensitive applications some form of additional security measures are
+recommended which may include network layer security with the use of
+Virtual Private Networks (VPNs), Transport Layer Security, or
+application layer security \cite{mqtt-sec-ssl}.
+
+Transport Layer Security (TLS) and Secure Sockets Layer (SSL) are
+cryptographic protocols that establish a the identity of the server
+and client with the help of a handshake mechanism which uses trust
+certificates to establish identities before encrypted communication
+can take place \cite{ibm-mqtt-security}. If the handshake is not
+completed for some reason, the connection is not established and no
+messages are exchanged \cite{mqtt-sec-ssl}. ``Most MQTT brokers
+provide an option to use TLS instead of plain TCP and port 8883 has
+been standardized for secured MQTT connections''
+\cite{iot-design-mqtt-security}.
+
+Using TLS/SSL security however comes at an additional cost. If the
+connections are short-lived then most of the time can be spent in the
+handshake itself, which may take up few kilobytes of bandwidth. In
+case the connections are short-lived, temporary session IDs and
+session tickets can be used to resume a session instead of repeating
+the handshake process. If the connections are long term, the overhead
+of the handshake is negligible and TLS/SSL security should be used
+\cite{iot-design-mqtt-security}\cite{mqtt-sec-ssl}.
+
+\subsection{Raspberry Pi}
+
+The raspberry pi is a credit card sized development board that was developed by Eben Upton with the goal to crate a low cost device that can be used for education and prototypiing \cite{os-pi}. Since its creation the board has been adapted for various different projects by educators hobbyists and in the industry \cite{pi-official}. The board is developed as open hardware except for the Broadcom chip that controls the main components of the board, and most raspberry pi projects are available openly with detailed documentation.
+
+The board's Broadcom system on chip consists of an ARM processor and it can be used just like a normal computer by connnecting a monitor, a keyboard and a mouse. The raspberry pi can communicate to other devices with the help of wifi and bluetooth and is capable of accessing the internet. All this put together makes the raspberry pi a very useful device \cite{pi-official}.
+
+The raspberry pi comes in various models, Model A+, which is one of the smallest form factors, rasbperry pi2 Model B, raspberry pi3 Model B and Model B+ that have more gpio pins. The raspberry pi 3 Model B is the newest design and consists of on board wifi and bluetooth, eliminating the need to use usb wifi and bluetooth attachments. It has a 1.2 GHz ARM 8 microprocessor, 1 GB RAM, a dual core Videocore IV GPU, and 40 general purpose input and output (GPIO) pins. The board has an ethernet port and four USB ports and an HDMI port to connect to a monitor \cite{pi-compare}\cite{element-compare}.
+
+The raspberry pi Zero is the deveopment board that has the smallest form factor. Even though the the raspberry pi zero includes no ehternet or USB ports, and does not come with GPIO pins soldered on, its small size and cost effectiveness make it extremely useful in applications such as IoT where space is constrained \cite{official-pi-zero}.
+
+The raspberry pi uses a micro SD card to boot and various operating systems, that support the ARM architecture can be used. The most common operating systems are Raspbian, a derivative of the Debian linux, and Pidora, a derivative of Fedora. There are other operating systems cantered around using the raspberry pi for various purposes, like openELEC and RaspBMC, whic make it easy to use raspberry pi as a multimedia center. For, users who want non-linux operating system, RISC OS may be a good choice. The raspberry pi foundation provides new users the opportunity to try out various operating systems with the help of their New Out  Of The Box Software (NOOBS), which allows the users to pick which operating system they want to use \cite{os-pi}.
+
+
+\subsection{Stepper Motors}
+Stepper motors are brushless motors that divide the complete rotation into a number of parts known as steps. The motor consists of electromagnetic coils and a rotating core that aligns itself according to the combined magnetic effect of the coils. The stepper motor can move from one step to another and remain in a single step based on which coils are turned on. The torque of the otor can be increased or decreased with the current supplied to the coils, and the speed of rotation can be controlled by setting the time interval between switching the coils on and off \cite{wiki-stepper}.
+
+% how they work
+% full steping
+% half stepping
+% half stepping and ful stepping figures
+
+% which motor has been used elegoo, specs
+
+\subsection{Opencv}
+% half page
+
+% describe what opencv is
+% what it is built on numpy
+% efficient processing
+
+% detecting faces using Haar Cascades
+% how haar cascades work
+% haar cascades figures
+
+\section{Architecture}
+% one page explain in detail
+
+% add figures
+% architecture 
+% two programs running on pi
+% two programs running on pc
+% how they communicate : figure
+% external MQTT server assumed
+% can be scaled easily, how
+% deployment with Makefile.
+% link to code.
+
+\section{Results}
+% one page
+\subsection{Setup Instructions}
+To run the application successfully on both the raspberry pi and the desktop, it must be ensured that all the required libraries are installed. A Makefile has been prvided that can do this on both the raspberry pi and the desktop.
+
+* First, the motors should be connected to the raspberry pi correctly.
+the program uses the raspberr pi GPIO pins , and assumes that for the left motor, the pins IN1, IN2, IN3, IN4 are conected to GPIO pins 7, 11, 13, and 15, and for the right motor, they are connected to GPIO pins, 8, 10, 12, 16, as shown in the connection diagram 
+%\ref{f:connection}
+
+
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/fly.pdf}
+  \caption{Example caption}\label{f:fly}
+\end{figure}
+
+
+* On the raspberry pi, dependencies for openCV need to be installed. Since the openCV is not available in pip for the arm processor in raspberry pi, we it must be installed from source. This takes a few hours on the raspberry pi. To complete the setup including installation of a MQTT client and opencv on the raspberry pi, clone the repository from github on the raspberry pi and navigate to the code folder, open the terminal and run the command
+
+{\em make setup\_pi}
+
+* Next, install opencv and an MQTT client and MQTT broker on the desktop. For this, clone the repository from github, navigate into the code folder and run the command 
+
+{\em make setup\_server}
+
+* Note the IP address of the desktop so that we an connect to the MQTT server running on it. Connect the raspberry pi and the desktop on the same wireless network.
+
+* To run the code on the desktop, run the command
+
+{\em make run\_server [IP address of the MQTT broker]}
+
+* Finally to run the code on the raspberry pi, run 
+
+{\em make run\_pi [IP address of the MQTT broker]}
+
+* Now the raspberry pi car can be controlled by typing in  W, A, S, or D keys on the desktop in the terminal where the program ins running.
+
+* The program can be stopped on both the raspberry pi and the desktop by running 
+
+{\em make kill}
+
+\subsection{Observations}
+% how it works on wifi
+It was observed that the communication beween the raspberry pi and the desktop controller application is pretty seemless. The robot car responds without any observable delays when the network is strong. When the network is weak, however, some delays may be observed. The delay in becomes more evident in the case of the images sent by the raspberry pi back to the desktop when the network is not strong.
+
+% how motors are jerky sometimes
+Using the stepper motors, it is difficult to set a how mush a motor should turn when it recieves a message. If the motor is not allowed to turn long enough, then between two mesages the motor will be idle and if it is turned longe than the interval between two messages, there can be conflicts if in response to each of the messages the subscriber runing on the raspberry pi tries to set a different step on the motor. Therefore, the movement can seem a litle jerky at times.
+
+% how this can be improved using continuos srvo motors
+However, this is not a problem with 360 degrees continuous servo motors. Since the continuous servo motors use pulse width modulation, the speed and direction of rotation can be controlled by sending a square wave with different duty cycles depending on the motor. Since, the motor can be stopped and started easily, there are no colflicts even if the motor is allowed to turn longer than the interval between two messages. However, the motor would respond to the two messages one after the other.
+
+Thus the raspberry pi robot car can be successfully controlled over wifi using MQTT for commmunication
+
+\subsection{Improvements}
+
+The project can be improved in various ways. Firstly, even though the deployment with makefile is easy, installing opencv on raspberry pi takes around 4 hours. This can be avoided if we use docker for deployment on the raspberry pi. Two separate images would me needed however one for the processor on the desktop and another one for the arm 8 processor on the raspberry pi.
+
+Machine learning can be incorporated, by collecting the images and the corresponding messages that were sent to the raspberry pi and use it to train a neural network, which could then be used to drive the robot car autonomously. This would be complicated however since car needs to be driven for a long time to get enough data for the neural network to perform well regardless of the surroundings.
+
+Many diffrent sensors could be added to help improve the monitoring capability of the car, and get more information about the environment.
+If many controlling devices and cars are present, the cars may be controlled in groups and other functionality added to behave as a swarm of cars to complete tasks collaboratively.
+
+
+
+\section{Conclusion}
+MQTT is a fast and reliable data agnostic and platform independent protocol that allows communication between devices. Raspberry pi is small but powerful deveopment board that allows users to build prototypes easily and can be used in various applications because of the significantly powerful arm 8 microprocessor. OpenCv is an open source library for computer vision that is optimised to perform operations on images efficiently and is commonly used in computer vision applications. All these technologies were used to build a robot car, controlled via MQTT over a wireles network. MQTT allows us to easily scale up the number of such cars if needed.
+
+\begin{acks}
+
+  The authors would like to thank Dr. Gregor von Laszewski for giving the opportunity to work on this project and for providign the ncessay ardwawre to complete the project.
+  The author would also like to thank the associate istructors of th class for their help and for answering questions on piazza which helped everyone.
+
+\end{acks}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{report} 
+
+\appendix
+
+
+
+\input{issues}
+
+\end{document}
