@@ -56,7 +56,7 @@ project:
         - Arnav, Arnav
     pid:
         - 201
-    status: 90%
+    status: 100%
     title: IoT Application Using MQTT and Raspberry Pi Robot Car
     type: project
     url: https://github.com/bigdata-i523/hid201/project
