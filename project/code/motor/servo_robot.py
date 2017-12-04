@@ -1,3 +1,4 @@
+from __future__ import print_function
 import time
 from continuous_servo import ContinuousServo
 
@@ -71,7 +72,7 @@ class ServoRobot:
 if __name__ == "__main__":
 	robot = ServoRobot(3,5)
 
-	print "lft"
+	print("lft")
 	robot.turn_left(2)
-	print "rt"
+	print("rt")
 	robot.turn_right(2)

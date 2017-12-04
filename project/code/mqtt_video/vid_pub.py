@@ -1,3 +1,4 @@
+from __future__ import print_function
 import paho.mqtt.client as mqtt
 import picamera
 from picamera.array import PiRGBArray
@@ -7,14 +8,14 @@ import sys
 
 def on_connect(client, user_data, flags, rc):
 	if rc == 0:
-		print "connected"
+		print( "connected")
 	else:
-		print "error while connecting"
+		print( "error while connecting")
 
 def on_log(client, user_data, level, buff):
-	print "log :" , buff
+	print( "log :" + str( buff))
 
-print "setting camera"
+print("setting camera")
 camera = picamera.PiCamera()
 camera.resolution = (640,480)
 camera.framerate = 30

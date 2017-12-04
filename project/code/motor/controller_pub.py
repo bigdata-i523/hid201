@@ -1,3 +1,4 @@
+from __future__ import print_function
 import paho.mqtt.client as mqtt
 import time
 import sys
@@ -28,12 +29,12 @@ def getch():
 
 def on_connect(client, user_data, flags, rc):
 	if rc == 0:
-		print "connected successfully"
+		print("connected successfully")
 	else:
-		print "error while connecting"
+		print( "error while connecting")
 
 def on_log(client, user_data, level, buff):
-	print "log :", buff
+	print( "log :"+ str( buff))
 
 client = mqtt.Client("controller")
 client.on_connect = on_connect
@@ -51,7 +52,7 @@ while True:
 	ch = getch()
 	#print ch
 	if ch == "0":
-		print "exiting"
+		print( "exiting")
 		exit()
 	elif ch == "w":
 		client.publish('topic/control', "F")

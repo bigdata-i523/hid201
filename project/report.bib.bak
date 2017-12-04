@@ -13,6 +13,19 @@
   Url                      = {http://storm.apache.org/releases/1.1.0/storm-mqtt.html}
 }
 
+@Misc{stepper2,
+  Title                    = {Understanding Stepper Motors Part I – A Basic Model},
+
+  Author                   = {Built to spec},
+  HowPublished             = {built-to-spec.com website},
+  Month                    = {October},
+  Year                     = {2015},
+
+  Owner                    = {arnav},
+  Timestamp                = {2017.12.04},
+  Url                      = {http://www.built-to-spec.com/blog/2012/04/09/understanding-stepper-motors-part-i-a-basic-model/}
+}
+
 @Misc{hivemq-details,
   Title                    = {MQTT Essentials Part 2: Publish \& Subscribe},
 
@@ -255,6 +268,18 @@
   Url                      = {http://www.iam.ecs.soton.ac.uk/projects/297.html}
 }
 
+@Misc{elegoo,
+  Title                    = {Elegoo 5 sets 28BYJ-48 5V Stepper Motor and ULN2003 Motor Driver Board for Arduino},
+
+  Author                   = {Elegoo Industeies},
+  HowPublished             = {elegoo industries website},
+  Year                     = {2017},
+
+  Owner                    = {arnav},
+  Timestamp                = {2017.12.04},
+  Url                      = {https://www.elegoo.com/product/elegoo-5-sets-28byj-48-5v-stepper-motor-uln2003-motor-driver-board-for-arduino/}
+}
+
 @Misc{gopigo,
   Title                    = {GoPiGo Build and Program Your Own Robot},
 
@@ -288,6 +313,18 @@
   Owner                    = {arnav},
   Timestamp                = {2017.11.05},
   Url                      = {https://www.influxdata.com/integration/mqtt-monitoring/}
+}
+
+@Misc{stepper1,
+  Title                    = {How Stepper Motors Work},
+
+  Author                   = {Images Scientifig Insteumentation},
+  HowPublished             = {imagesco.com website},
+  Year                     = {2017},
+
+  Owner                    = {arnav},
+  Timestamp                = {2017.12.04},
+  Url                      = {http://www.imagesco.com/articles/picstepper/02.html}
 }
 
 @InProceedings{monocular,
@@ -368,6 +405,31 @@
   Url                      = {http://mqtt.org/}
 }
 
+@Misc{official-opencv,
+  Title                    = {About},
+
+  Author                   = {Opencv},
+  HowPublished             = {opencv.org website},
+  Year                     = {2017},
+
+  Owner                    = {arnav},
+  Timestamp                = {2017.12.04},
+  Url                      = {https://opencv.org/about.html}
+}
+
+@Misc{opencv-haar,
+  Title                    = {Face Detection using Haar Cascades},
+
+  Author                   = {Opencv},
+  HowPublished             = {opencv website},
+  Month                    = {August},
+  Year                     = {2017},
+
+  Owner                    = {arnav},
+  Timestamp                = {2017.12.04},
+  Url                      = {https://docs.opencv.org/3.3.0/d7/d8b/tutorial_py_face_detection.html}
+}
+
 @Misc{openhab,
   Title                    = {What is openHAB?},
 
@@ -445,7 +507,7 @@
 }
 
 @Misc{official-pi-zero,
-  Title                    = {Raspberry Pi Zero: the {$}5 computer},
+  Title                    = {Raspberry Pi Zero: the 5 dollar computer},
 
   Author                   = {raspberrypi.org},
   HowPublished             = {raspberrypi.org},
@@ -522,6 +584,19 @@
   Url                      = {https://smart-factory.net/mqtt-elasticsearch-setup/}
 }
 
+@Misc{elegoo-desc,
+  Title                    = {28BYJ-48 Stepper Motor with ULN2003 driver and Arduino Uno},
+
+  Author                   = {Stan},
+  HowPublished             = {42 bolts website},
+  Month                    = {March},
+  Year                     = {2014},
+
+  Owner                    = {arnav},
+  Timestamp                = {2017.12.04},
+  Url                      = {http://42bots.com/tutorials/28byj-48-stepper-motor-with-uln2003-driver-and-arduino-uno/}
+}
+
 @Misc{grove-relay,
   Title                    = {Grove Relay},
 
@@ -558,6 +633,26 @@
   Url                      = {https://en.wikipedia.org/w/index.php?title=Storm_(event_processor)&oldid=808771136}
 }
 
+@Misc{cnn-wiki,
+  Title                    = {Convolutional neural network --- Wikipedia{,} The Free Encyclopedia},
+
+  Author                   = {Wikipedia},
+  Note                     = {[Online; accessed 4-December-2017]},
+  Year                     = {2017},
+
+  Url                      = {https://en.wikipedia.org/w/index.php?title=Convolutional_neural_network&oldid=812847133}
+}
+
+@Misc{haar-wiki,
+  Title                    = {Viola–Jones object detection framework --- Wikipedia{,} The Free Encyclopedia},
+
+  Author                   = {Wikipedia},
+  Note                     = {[Online; accessed 4-December-2017]},
+  Year                     = {2017},
+
+  Url                      = {https://en.wikipedia.org/w/index.php?title=Viola%E2%80%93Jones_object_detection_framework&oldid=808683512}
+}
+
 @Misc{mqtt-wiki,
   Title                    = {MQTT --- Wikipedia{,} The Free Encyclopedia},
 
@@ -567,6 +662,16 @@
   Year                     = {2017},
 
   Url                      = {https://en.wikipedia.org/w/index.php?title=MQTT&oldid=808683219}
+}
+
+@Misc{opencv-wiki,
+  Title                    = {OpenCV --- Wikipedia{,} The Free Encyclopedia},
+
+  Author                   = {Wikipedia},
+  Note                     = {[Online; accessed 4-December-2017]},
+  Year                     = {2017},
+
+  Url                      = {https://en.wikipedia.org/w/index.php?title=OpenCV&oldid=811519079}
 }
 
 @Misc{Wikipedi2017,
