@@ -56,8 +56,5 @@ The code for the project is available <a href="https://github.com/bigdata-i523/h
 Thus for convenience it may be easier to use an SD card that has opencv installed
 
 * The complete working setup of the raspberry pi can be found at smith research center.
-
-* The programs have been added to /etc/rc.local and should run automatically on the raspberry pi when it boots up
-
-* You can also use Makefile to run this if testing on a new raspberry pi.
-
+* The program wasn not added to rc.local as we dont know bwforehand the IP address of the MQTT broker
+* You can also use Makefile to setup the libraries if testing on a new raspberry pi.
