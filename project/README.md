@@ -35,12 +35,12 @@ the program uses the raspberr pi GPIO pins , and assumes that for the left motor
 
 * To run the code on the desktop, run the command:
 
-	*make run_server IP=<ip address of the mqtt broker>*
+	*make run_server IP=[ip address of the mqtt broker]*
 this program can be exited by pressing 0
 
 * Finally to run the code on the raspberry pi, run 
 
-	* make run_pi IP=<ip address of the mqtt broker>*
+	* make run_pi IP=[ip address of the mqtt broker]*
 this program can be exited by pressing ctrl + c on the keyboard
 
 * To end the programs running in background, or to end all programs run the following command on the raspberry pi and the desktop
