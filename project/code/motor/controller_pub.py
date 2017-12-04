@@ -50,7 +50,7 @@ client.loop_start()
 
 while True:
 	ch = getch()
-	#print ch
+	print("Press 0 to exit")
 	if ch == "0":
 		print( "exiting")
 		exit()

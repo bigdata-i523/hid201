@@ -64,4 +64,5 @@ kill:
 	# kill the processes
 	kill -9 `cat .pid1`
 	kill -9 `cat .pid2`
-	rm .pid1 .pid2
+	rm .pid1
+	rm .pid2
