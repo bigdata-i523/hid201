@@ -1,3 +1,4 @@
+from __future__ import print_function
 import grovepi
 import time
 import paho.mqtt.client as mqtt
@@ -6,12 +7,12 @@ import sys
 
 def on_connect(client, user_data, flags, rc):
 	if rc == 0:
-		print "connection sucessful"
+		print("connection sucessful")
 	else:
-		print "error while cnnecting"
+		print( "error while cnnecting")
 
 def on_log(client, user_data, level, buff):
-	print "log : ", buff
+	print( "log : " + str( buff))
 
 def on_message(client, user_data, msg):
 	s = msg.payload
@@ -25,7 +26,7 @@ def on_message(client, user_data, msg):
 	elif s == "R":
 		robot.turn_right(t)
 	else:
-		print "INVALID MESSAGE"
+		print("INVALID MESSAGE")
 
 client = mqtt.Client("robot")
 client.on_connect = on_connect

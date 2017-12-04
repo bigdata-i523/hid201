@@ -1,3 +1,4 @@
+from __future__ import print_function
 import paho.mqtt.client as mqtt
 import time
 import cv2
@@ -6,13 +7,13 @@ import sys
 
 def on_connect(client, use_data, flags, rc):
 	if rc == 0:
-		print "connected"
+		print("connected")
 		client.subscribe('topic/video_frames')
 	else:
-		print "error"
+		print("error")
 
 def on_log(client, user_data, level, buff):
-	print "log :",buff
+	print( "log :" + str(buff))
 
 def on_message(client, user_data, msg):
 	buff = msg.payload
