@@ -22,6 +22,8 @@
 * 10/05/17 - 10/13/17 Finished watching videos on overviw of data science (section 3.2)
 * 10/20/17 - 11/9/17 Finished watching videos for sections 3.3, 3.4, and 3.5 
 * 11/16/17 Watched video on SKA
+* 11/17/17 - 11/24/17 Finished watching videos for section 3.6, 3.7, 3.8
+* 11/24/17 - 12/1/17 Completed theory section videos.
 
 # Practice
 
@@ -41,6 +43,8 @@
 * 10/29/17 polyfit experiment
 * 11/12/17 perceptron problem experiment
 * 11/17/17 perform clustering on sechhi disk data data.xlsx file
+* 11/18/17 - 11/24/17 complete code for project, deployment remaining
+* 2/12/17 complete deployment using Makefile
 
 # Writing
 
@@ -52,6 +56,7 @@
 * 10/18/17 Topic for paper 2 approved
 * 11/06/17 completed a draft of paper 2
 * 11/12/17 review updates in paper 2
+* 1/12/17 draft of project report
 
 # Meetings
 
