@@ -180,6 +180,31 @@ number of clients and it can become impractical to authorize everyone,
 clients may be grouped and the authorizations may be checked for each
 group \cite{ibm-mqtt-security}.
 
+MQTT allows easy integration with other services, that have
+been designed to process this data.
+
+Apache storm is a distributed processing system that allows real time
+processing of continuous data streams, much like Hadoop works for
+batch processing \cite{apache-storm}. Apache storm can be easily
+integrated with MQTT as shown in \cite{apache-storm-mqtt} to get real
+time data streams and allow analytics and online machine learning in a
+fault tolerant manner \citep{apache-storm-wiki}.
+
+ELK stack (elastic-search, logstash and kibana) is an opensource
+project designed for scalability which contains three main software
+packages, the {\em elastic-search} search and analytics engine, {\em
+  logstash} which is a data collection pipeline and {\em kibana} which
+is a visualization dashboard \cite{elk-stack}. Data from an IoT
+network can be collected, analysed and visualized easily with the help
+of the ELK stack as shown in \cite{mqtt-elasticsearch-setup} and
+\cite{kibana-mqtt-analysis}.
+
+MQTT broker services can be utilized for enterprise and production
+environments. EMQ (Erlang MQTT Broker) provides a highly scalable,
+distributed and reliable MQTT broker that can be used in
+enterprise-grade applications \cite{erlang-mqtt-broker}.
+
+
 \subsection{Raspberry Pi}
 
 The raspberry pi is a credit card sized development board that was developed by Eben Upton with the goal to crate a low cost device that can be used for education and prototypiing \cite{os-pi}. Since its creation the board has been adapted for various different projects by educators hobbyists and in the industry \cite{pi-official}. The board is developed as open hardware except for the Broadcom chip that controls the main components of the board, and most raspberry pi projects are available openly with detailed documentation.
@@ -192,6 +217,7 @@ The raspberry pi Zero is the deveopment board that has the smallest form factor.
 
 The raspberry pi uses a micro SD card to boot and various operating systems, that support the ARM architecture can be used. The most common operating systems are Raspbian, a derivative of the Debian linux, and Pidora, a derivative of Fedora. There are other operating systems cantered around using the raspberry pi for various purposes, like openELEC and RaspBMC, which make it easy to use raspberry pi as a multimedia center. For, users who want non-linux operating system, RISC OS may be a good choice. The raspberry pi foundation provides new users the opportunity to try out various operating systems with the help of their New Out  Of The Box Software (NOOBS), which allows the users to pick which operating system they want to use \cite{os-pi}.
 
+Variuos different shields are available for the raspberry pi that make it simple to connect to various peripherals, and extend the functionality of the raspberry pi, such as the Grovepi shield, provided by Dexter Industries, which alows simple interface with may digital and analog sensors and actuators provided by Dexter.
 
 \subsection{Stepper Motors}
 Stepper motors are brushless motors that divide the complete rotation into a number of parts known as steps. The motor consists of electromagnetic coils and a rotating core that aligns itself according to the combined magnetic effect of the coils. The stepper motor can move from one step to another and remain in a single step based on which coils are turned on. The torque of the otor can be increased or decreased with the current supplied to the coils, and the speed of rotation can be controlled by setting the time interval between switching the coils on and off \cite{wiki-stepper}.
@@ -205,14 +231,14 @@ Figure \ref{f:stepper1} shows how a steppper motor with a resolution of 90 degre
   \caption{Working of a steper motor : Full stepping using one coil at a time \cite{stepper1}}\label{f:stepper1}
 \end{figure}
 
-In the above method, only one coil is turned on at a time. This can be improved upon to get a higher torque. To get a higher torque, two adjescent coils are turned on at the same time, as shown in \ref{f:stepper2}. This results in double the torque generated when using only one coil at a time \cite{stepper2}.
+In the above method, only one coil is turned on at a time. This can be improved upon to get a higher torque. To get a higher torque, two adjescent coils are turned on at the same time, as shown in figure \ref{f:stepper2}. This results in double the torque generated when using only one coil at a time \cite{stepper2}.
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/stepper2.pdf}
   \caption{Working of a steper motor : Full stepping using two coils at a time \cite{stepper2}}\label{f:stepper2}
 \end{figure}
 
-With full stepping however, the transition between two consecutive steps is not very smooth. Therefore, a technique called Half stepping is used, where two adjescent coils are turned on similar to full stepping, but between two steps one of the coils is turned off, so that the transition between steps is smooth. This results in a torque 70 percent of that generated in using full stepping with two coils turned on at the same time. This process is shown in \ref{f:stepper3} \cite{stepper1}.
+With full stepping however, the transition between two consecutive steps is not very smooth. Therefore, a technique called Half stepping is used, where two adjescent coils are turned on similar to full stepping, but between two steps one of the coils is turned off, so that the transition between steps is smooth. This results in a torque 70 percent of that generated in using full stepping with two coils turned on at the same time. This process is shown in figure \ref{f:stepper3} \cite{stepper1}.
 
 \begin{figure}[!ht]
   \centering\includegraphics[width=\columnwidth]{images/stepper3.pdf}
@@ -237,50 +263,68 @@ Opencv can be used to detect faces in real time. The Haar cascades function in t
 The performance of the Haar cascades suffers however, when detecting objects in new images that are present in a different orientation than the ones used to train the classifiers. The classifiers may also fail to differentiate between the object that needs to be detected and similar objects if enough negative examples are not shown while training that include similar objects.
 
 \section{Architecture}
-% add figures
-% architecture 
-% two programs running on pi
-% two programs running on pc
-% how they communicate : figure
-% external MQTT server assumed
-% can be scaled easily, how
-% deployment with Makefile.
-% link to code.
 
+The solution includes two entities the raspberry pi and the desktop, each running two programs. The raspberry pi is connected to the robot car and the raspberry pi can drive the robot car accordig to he message it recieves from the desktop.
+
+There are two programs running on pi, controller\_stepper\_sub.py ans video\_pub.py, and two programs running on the desktop, controller\_pub.py and video\_sub.py.
+
+The programs on both the raspberry pi and the desktop connect to a common broker. the broker may be running on the desktop, or any other place, as long as the IP address of the broker is known. The IP address can be passed as a command line argument when running these programs.
+
+The controller\_pub.py program running on the desktop continuously reads characters from the user and publishes them to the broker under the topic {\em topic/control}. The subsciber controller\_stepper\_sub.py runningon the raspberry pi waits for these messages from the broker and when a message is received it uses the {\em on\_message()} callback to make the robot car move forward, move backward, turn left or turn right, using the half stepping technique described in the previous section.
+
+For monitoring purposes, another program, video\_pub runs on the raspberry pi. This program uses the raspberry pi on board camera with the help of the picamera module and captures images. The images are ocnverted to greyscale, and opencv is used to perform face detection using Haar Cascades. If a face is found, a box is dran around the face in the image. The image is published to the broker under the topic {\em topic/video\_frames}. The video\_sub.py program running on the desktop subscribes to this topic on the broker and displays the images received. These images can be used fo the navigation of the robot car remotely figure \ref{f:arch}.
+
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/architecture.pdf}
+  \caption{Architecture of the Application}\label{f:arch}
+\end{figure}
+
+Using separate programs allow changing the functionality or replacing different parts of the program easily, while keeping the interface same. the program, controller\_sub.py, can be used if contunuous rotation servo motors are used instead of the stepper motors without changing any other part of the application.
+
+The programs can be run easily with the help of a Makefile as described in the next section
 \section{Results}
 This section covers the setup instructions for the project and the observations.
 
 \subsection{Setup Instructions}
+
 To run the application successfully on both the raspberry pi and the desktop, it must be ensured that all the required libraries are installed. A Makefile has been prvided that can do this on both the raspberry pi and the desktop.
 
-* First, the motors should be connected to the raspberry pi correctly.
-the program uses the raspberr pi GPIO pins , and assumes that for the left motor, the pins IN1, IN2, IN3, IN4 are conected to GPIO pins 7, 11, 13, and 15, and for the right motor, they are connected to GPIO pins, 8, 10, 12, 16, as shown in the connection diagram 
-%\ref{f:connection}
+\begin{itemize}
 
+\item First, the motors should be connected to the raspberry pi correctly.
+the program uses the raspberr pi GPIO pins , and assumes that for the left motor, the pins IN1, IN2, IN3, IN4 are conected to GPIO pins 7, 11, 13, and 15, and for the right motor, they are connected to GPIO pins, 8, 10, 12, 16, as shown in the connection diagram in figure
+\ref{f:connection}
 
-* On the raspberry pi, dependencies for openCV need to be installed. Since the openCV is not available in pip for the arm processor in raspberry pi, we it must be installed from source. This takes a few hours on the raspberry pi. To complete the setup including installation of a MQTT client and opencv on the raspberry pi, clone the repository from github on the raspberry pi and navigate to the code folder, open the terminal and run the command
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/connection.pdf}
+  \caption{Connection Diagram}\label{f:connection}
+\end{figure}
+
+\item On the raspberry pi, dependencies for openCV need to be installed. Since the openCV is not available in pip for the arm processor in raspberry pi, we it must be installed from source. This takes a few hours on the raspberry pi. To complete the setup including installation of a MQTT client and opencv on the raspberry pi, clone the repository from github on the raspberry pi and navigate to the code folder, open the terminal and run the command
 
 {\em make setup\_pi}
 
-* Next, install opencv and an MQTT client and MQTT broker on the desktop. For this, clone the repository from github, navigate into the code folder and run the command 
+\item Next, install opencv and an MQTT client and MQTT broker on the desktop. For this, clone the repository from github, navigate into the code folder and run the command 
 
 {\em make setup\_server}
 
-* Note the IP address of the desktop so that we an connect to the MQTT server running on it. Connect the raspberry pi and the desktop on the same wireless network.
+\item Note the IP address of the desktop so that we an connect to the MQTT server running on it. Connect the raspberry pi and the desktop on the same wireless network.
 
-* To run the code on the desktop, run the command
+\item To run the code on the desktop, run the command
 
 {\em make run\_server [IP address of the MQTT broker]}
 
-* Finally to run the code on the raspberry pi, run 
+\item Finally to run the code on the raspberry pi, run 
 
 {\em make run\_pi [IP address of the MQTT broker]}
 
-* Now the raspberry pi car can be controlled by typing in  W, A, S, or D keys on the desktop in the terminal where the program ins running.
+\item Now the raspberry pi car can be controlled by typing in  W, A, S, or D keys on the desktop in the terminal where the program ins running.
 
-* The program can be stopped on both the raspberry pi and the desktop by running 
+\item The program can be stopped on both the raspberry pi and the desktop by running 
 
 {\em make kill}
+
+\end{itemize}
 
 \subsection{Observations}
 % how it works on wifi
@@ -299,6 +343,8 @@ Thus the raspberry pi robot car can be successfully controlled over wifi using M
 The project can be improved in various ways. Firstly, even though the deployment with makefile is easy, installing opencv on raspberry pi takes around 4 hours. This can be avoided if we use docker for deployment on the raspberry pi. Two separate images would me needed however one for the processor on the desktop and another one for the arm 8 processor on the raspberry pi.
 
 Machine learning can be incorporated, by collecting the images and the corresponding messages that were sent to the raspberry pi and use it to train a neural network, which could then be used to drive the robot car autonomously. This would be complicated however since car needs to be driven for a long time to get enough data for the neural network to perform well regardless of the surroundings.
+
+Using Haar cascades for face detection leads to a problem that faces can be regognised only if they are resent inthe image in the same orientation as that in the trainig examples. Therefore, it is challenging to recognise all faces in all orientations since it is not possible to train the classifier on images of different faces from all possible angles ans rotations. A better option would be to Concolutional Neural Networks, that help in improving accuracy for the purpose of object detection. Since training and running neural networks may be computationally expensive, it would be a good idea to run it on a server and not on the raspberry pi.
 
 Many diffrent sensors could be added to help improve the monitoring capability of the car, and get more information about the environment.
 If many controlling devices and cars are present, the cars may be controlled in groups and other functionality added to behave as a swarm of cars to complete tasks collaboratively.
