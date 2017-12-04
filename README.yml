@@ -43,13 +43,21 @@ paper2:
     url: https://github.com/bigdata-i523/hid201/paper2
     chapter: Technology
 project:
-    abstract: null
+    abstract: >
+        As the number of connected edge devices increases there is a need for fast 
+        comunication between these devices, and to analyse the data collected by
+        these devices, which is made possible by the use of a scalable lightweight 
+        communicatoin protocol such as MQTT, which is easy to use, data agnostic, and 
+        application independent.
+        We look at one such appllication of the protocol, to control a robot car remotely,
+        over wireless network, navigating with the help of a raspberry pi camera on the car.
+
     author:
         - Arnav, Arnav
     pid:
         - 201
-    status: not started
-    title: edge computing application using mqtt and raspberry pi
-    type: latex
-    url: null
+    status: 90%
+    title: IoT Application Using MQTT and Raspberry Pi Robot Car
+    type: project
+    url: https://github.com/bigdata-i523/hid201/project
     

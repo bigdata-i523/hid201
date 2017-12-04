@@ -164,6 +164,22 @@ the handshake process. If the connections are long term, the overhead
 of the handshake is negligible and TLS/SSL security should be used
 \cite{iot-design-mqtt-security}\cite{mqtt-sec-ssl}.
 
+Although MQTT protocol itself does not include authorization, many MQTT brokers
+include authorization as an additional feature
+\cite{ibm-mqtt-security}. OAuth2.0 uses JSON Web Tokens which contain
+information about the token ans the user and are signed by a trusted
+authorization server \cite{hivemq-security-oauth}.
+
+When connecting to the broker this token can be used to check whether
+the client is authorised to connect at this time or not. Additionally
+the same validations can be used when publishing or subscribing to the
+broker. The broker may use a third party resource such as LDAP
+(lightweight directory access protocol) to look up authorizations for
+the client \cite{hivemq-security-oauth}. Since there can be a large
+number of clients and it can become impractical to authorize everyone,
+clients may be grouped and the authorizations may be checked for each
+group \cite{ibm-mqtt-security}.
+
 \subsection{Raspberry Pi}
 
 The raspberry pi is a credit card sized development board that was developed by Eben Upton with the goal to crate a low cost device that can be used for education and prototypiing \cite{os-pi}. Since its creation the board has been adapted for various different projects by educators hobbyists and in the industry \cite{pi-official}. The board is developed as open hardware except for the Broadcom chip that controls the main components of the board, and most raspberry pi projects are available openly with detailed documentation.
@@ -174,33 +190,53 @@ The raspberry pi comes in various models, Model A+, which is one of the smallest
 
 The raspberry pi Zero is the deveopment board that has the smallest form factor. Even though the the raspberry pi zero includes no ehternet or USB ports, and does not come with GPIO pins soldered on, its small size and cost effectiveness make it extremely useful in applications such as IoT where space is constrained \cite{official-pi-zero}.
 
-The raspberry pi uses a micro SD card to boot and various operating systems, that support the ARM architecture can be used. The most common operating systems are Raspbian, a derivative of the Debian linux, and Pidora, a derivative of Fedora. There are other operating systems cantered around using the raspberry pi for various purposes, like openELEC and RaspBMC, whic make it easy to use raspberry pi as a multimedia center. For, users who want non-linux operating system, RISC OS may be a good choice. The raspberry pi foundation provides new users the opportunity to try out various operating systems with the help of their New Out  Of The Box Software (NOOBS), which allows the users to pick which operating system they want to use \cite{os-pi}.
+The raspberry pi uses a micro SD card to boot and various operating systems, that support the ARM architecture can be used. The most common operating systems are Raspbian, a derivative of the Debian linux, and Pidora, a derivative of Fedora. There are other operating systems cantered around using the raspberry pi for various purposes, like openELEC and RaspBMC, which make it easy to use raspberry pi as a multimedia center. For, users who want non-linux operating system, RISC OS may be a good choice. The raspberry pi foundation provides new users the opportunity to try out various operating systems with the help of their New Out  Of The Box Software (NOOBS), which allows the users to pick which operating system they want to use \cite{os-pi}.
 
 
 \subsection{Stepper Motors}
 Stepper motors are brushless motors that divide the complete rotation into a number of parts known as steps. The motor consists of electromagnetic coils and a rotating core that aligns itself according to the combined magnetic effect of the coils. The stepper motor can move from one step to another and remain in a single step based on which coils are turned on. The torque of the otor can be increased or decreased with the current supplied to the coils, and the speed of rotation can be controlled by setting the time interval between switching the coils on and off \cite{wiki-stepper}.
 
 % how they work
-% full steping
-% half stepping
-% half stepping and ful stepping figures
+Stepper motors can be controlled in various ways, dependng on the application. 
+Figure \ref{f:stepper1} shows how a steppper motor with a resolution of 90 degrees can be made to complete one full rotation. In practice however, the resolution (the degrees moved at each step) of most stepper motors is much higher. The process mentioned in figure \ref{f:stepper1} is known as half stepping \cite{stepper1}.
 
-% which motor has been used elegoo, specs
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/stepper1.pdf}
+  \caption{Working of a steper motor : Full stepping using one coil at a time \cite{stepper1}}\label{f:stepper1}
+\end{figure}
+
+In the above method, only one coil is turned on at a time. This can be improved upon to get a higher torque. To get a higher torque, two adjescent coils are turned on at the same time, as shown in \ref{f:stepper2}. This results in double the torque generated when using only one coil at a time \cite{stepper2}.
+
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/stepper2.pdf}
+  \caption{Working of a steper motor : Full stepping using two coils at a time \cite{stepper2}}\label{f:stepper2}
+\end{figure}
+
+With full stepping however, the transition between two consecutive steps is not very smooth. Therefore, a technique called Half stepping is used, where two adjescent coils are turned on similar to full stepping, but between two steps one of the coils is turned off, so that the transition between steps is smooth. This results in a torque 70 percent of that generated in using full stepping with two coils turned on at the same time. This process is shown in \ref{f:stepper3} \cite{stepper1}.
+
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/stepper3.pdf}
+  \caption{Working of a steper motor : Half stepping \cite{stepper1}}\label{f:stepper3}
+\end{figure}
+
+For this project, the stepper motor 28BYJ-48, provided by Elegoo Industries is used. The motor is driven with the help of a ULN2003 motor driver. The motor is a unipolar steper motor, with a five wire connection to the motor controller and can work with 5 and 12 Volts of DC power supply. When using Half stepping, the step angle of the motor is about 5.625 degrees per step, and when using full stepping the step angle is 11.25 degrees per step.
+The motor weighs 30 grams, and a gear ratio of 64:1 \cite{elegoo}\cite{elegoo-desc}.
 
 \subsection{Opencv}
-% half page
 
-% describe what opencv is
-% what it is built on numpy
-% efficient processing
+The Open Source Computer Vision library (openCV) is a library of functions aimed at real time computer vision and macine learning and providing a common infrastructure to allow fast progress in the field of computer vision and machine perception \cite{opencv-wiki}\cite{official-opencv}.
 
-% detecting faces using Haar Cascades
-% how haar cascades work
-% haar cascades figures
+The library was originally build by Intel and is now maintained by Itseez and is available freely under open-source BSD License. The library was originally written for C++ but has been developed as cross platform library and supports Python , C++, MATLAB and Java \cite{official-opencv}. for Python the library has been built on top of Numpy, a library that optimizes matrix and vector operations, and takes advantade of MMX and SSE instructions whenever possible. For C++ the library uses the Standart Template Library (STL) as its backbone.
+
+The library has more than 2500 algorithms which include a combination of simple and advanced operations allowing a wide range of operations from edge detection, color detection to object detection, face detection and automatic video stabilization, and motion detection. The opencv-contrib which is an extention to the library built collaboratively by the community contains advanced algorithms that allow processing video in real time \cite{official-opencv}.
+
+OpenCV is widely used in the industry by startups as well as well established organizations like Google, Yhoo, Microdoft, IBM and Intel \cite{official-opencv}.
+
+Opencv can be used to detect faces in real time. The Haar cascades function in the library allows detecting any kind of objects. THe algorithm uses a series of simple classifiers to predict whether a given image has the desired object or not. After training on a large set of positive examples (images containing faces) and negative examples (images not containing faces), the algorithm learns various classifiers, that classify different sections of the image in a manner similar to Adaboost algorithm. Only the portions of the image that are promising are analysed further by more detailed classifiers. This allows the algorithm to run in real time, and detect multiple objects \cite{opencv-haar}\cite{haar-wiki}. Once the classifiers are learned, they can be stored in an XML file which can be used to classify new images. This allows users to obtain XML files available openly for classifiers trained to detect the required object and use them in their programs. Opencv provides XML files for classifiers trained to detect faces and eyes.
+
+The performance of the Haar cascades suffers however, when detecting objects in new images that are present in a different orientation than the ones used to train the classifiers. The classifiers may also fail to differentiate between the object that needs to be detected and similar objects if enough negative examples are not shown while training that include similar objects.
 
 \section{Architecture}
-% one page explain in detail
-
 % add figures
 % architecture 
 % two programs running on pi
@@ -212,19 +248,14 @@ Stepper motors are brushless motors that divide the complete rotation into a num
 % link to code.
 
 \section{Results}
-% one page
+This section covers the setup instructions for the project and the observations.
+
 \subsection{Setup Instructions}
 To run the application successfully on both the raspberry pi and the desktop, it must be ensured that all the required libraries are installed. A Makefile has been prvided that can do this on both the raspberry pi and the desktop.
 
 * First, the motors should be connected to the raspberry pi correctly.
 the program uses the raspberr pi GPIO pins , and assumes that for the left motor, the pins IN1, IN2, IN3, IN4 are conected to GPIO pins 7, 11, 13, and 15, and for the right motor, they are connected to GPIO pins, 8, 10, 12, 16, as shown in the connection diagram 
 %\ref{f:connection}
-
-
-\begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/fly.pdf}
-  \caption{Example caption}\label{f:fly}
-\end{figure}
 
 
 * On the raspberry pi, dependencies for openCV need to be installed. Since the openCV is not available in pip for the arm processor in raspberry pi, we it must be installed from source. This takes a few hours on the raspberry pi. To complete the setup including installation of a MQTT client and opencv on the raspberry pi, clone the repository from github on the raspberry pi and navigate to the code folder, open the terminal and run the command
@@ -280,6 +311,7 @@ MQTT is a fast and reliable data agnostic and platform independent protocol that
 \begin{acks}
 
   The authors would like to thank Dr. Gregor von Laszewski for giving the opportunity to work on this project and for providign the ncessay ardwawre to complete the project.
+  
   The author would also like to thank the associate istructors of th class for their help and for answering questions on piazza which helped everyone.
 
 \end{acks}
