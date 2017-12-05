@@ -37,7 +37,7 @@ paper2:
         - Arnav, Arnav
     hid:
         - 201
-    status: 80%
+    status: 100%
     title: Using MQTT for Communication in IoT Applications
     type: latex
     url: https://github.com/bigdata-i523/hid201/paper2
