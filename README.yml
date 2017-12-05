@@ -60,4 +60,5 @@ project:
     title: IoT Application Using MQTT and Raspberry Pi Robot Car
     type: project
     url: https://github.com/bigdata-i523/hid201/project
-    
+    chapter: Edge Computing
+
