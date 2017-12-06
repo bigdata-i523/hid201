@@ -1,6 +1,6 @@
 \documentclass[sigconf]{acmart}
 
-\input{format/i523}
+\input{format/final}
 
 \begin{document}
 \title{IoT Application Using MQTT and Raspberry Pi Robot Car}
@@ -295,10 +295,10 @@ To run the application successfully on both the raspberry pi and the desktop, it
 the program uses the raspberr pi GPIO pins , and assumes that for the left motor, the pins IN1, IN2, IN3, IN4 are conected to GPIO pins 7, 11, 13, and 15, and for the right motor, they are connected to GPIO pins, 8, 10, 12, 16, as shown in the connection diagram in figure
 \ref{f:connection}
 
-\begin{figure}[!ht]
-  \centering\includegraphics[width=\columnwidth]{images/connection.pdf}
+\begin{figure*}[!ht]
+  \centering\includegraphics[width=\textwidth]{images/connection.pdf}
   \caption{Connection Diagram}\label{f:connection}
-\end{figure}
+\end{figure*}
 
 \item On the raspberry pi, dependencies for openCV need to be installed. Since the openCV is not available in pip for the arm processor in raspberry pi, we it must be installed from source. This takes a few hours on the raspberry pi. To complete the setup including installation of a MQTT client and opencv on the raspberry pi, clone the repository from github on the raspberry pi and navigate to the code folder, open the terminal and run the command
 
