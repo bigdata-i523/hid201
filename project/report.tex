@@ -256,7 +256,7 @@ The library was originally build by Intel and is now maintained by Itseez and is
 
 The library has more than 2500 algorithms which include a combination of simple and advanced operations allowing a wide range of operations from edge detection, color detection to object detection, face detection and automatic video stabilization, and motion detection. The opencv-contrib which is an extention to the library built collaboratively by the community contains advanced algorithms that allow processing video in real time \cite{official-opencv}.
 
-OpenCV is widely used in the industry by startups as well as well established organizations like Google, Yhoo, Microdoft, IBM and Intel \cite{official-opencv}.
+OpenCV is widely used in the industry by startups as well as well established organizations like Google, Yahoo, Microsoft, IBM and Intel \cite{official-opencv}.
 
 Opencv can be used to detect faces in real time. The Haar cascades function in the library allows detecting any kind of objects. THe algorithm uses a series of simple classifiers to predict whether a given image has the desired object or not. After training on a large set of positive examples (images containing faces) and negative examples (images not containing faces), the algorithm learns various classifiers, that classify different sections of the image in a manner similar to Adaboost algorithm. Only the portions of the image that are promising are analysed further by more detailed classifiers. This allows the algorithm to run in real time, and detect multiple objects \cite{opencv-haar}\cite{haar-wiki}. Once the classifiers are learned, they can be stored in an XML file which can be used to classify new images. This allows users to obtain XML files available openly for classifiers trained to detect the required object and use them in their programs. Opencv provides XML files for classifiers trained to detect faces and eyes.
 
@@ -283,8 +283,19 @@ Using separate programs allow changing the functionality or replacing different 
 
 The programs can be run easily with the help of a Makefile as described in the next section
 \section{Results}
-This section covers the setup instructions for the project and the observations.
+This section covers the setup instructions for the project and the observations. The robot car that was built is shown in figure \ref{f:car1}. %and figure \ref{f:car2}
 
+\begin{figure}[!ht]
+  \centering\includegraphics[width=\columnwidth]{images/car1.pdf}
+  \caption{Raspberry Pi Robot Car}\label{f:car1}
+\end{figure}
+
+%
+%\begin{figure}[!ht]
+%  \centering\includegraphics[width=\columnwidth]{images/car2.pdf}
+%  \caption{Raspberry Pi Robot Car}\label{f:car2}
+%\end{figure}
+%
 \subsection{Setup Instructions}
 
 To run the application successfully on both the raspberry pi and the desktop, it must be ensured that all the required libraries are installed. A Makefile has been prvided that can do this on both the raspberry pi and the desktop.
