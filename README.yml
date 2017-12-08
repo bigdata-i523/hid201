@@ -59,7 +59,7 @@ project:
         camera on the car.
     author:
         - Arnav, Arnav
-    pid:
+    hid:
         - 201
     status: 100%
     title: IoT Application Using MQTT and Raspberry Pi Robot Car
