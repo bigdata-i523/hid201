@@ -21,7 +21,6 @@ paper1:
         - 201
     status: "20th Oct 2017 100%"
     title: Big Data analytics and Edge Compting
-    type: latex
     url: https://github.com/bigdata-i523/hid201/paper1
 paper2:
     review: Nov 10 2017
@@ -43,7 +42,6 @@ paper2:
         - 201
     status: 100%
     title: Using MQTT for Communication in IoT Applications
-    type: latex
     url: https://github.com/bigdata-i523/hid201/paper2
     chapter: Technology
 project:
