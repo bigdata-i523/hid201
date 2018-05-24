@@ -26,11 +26,12 @@ this will give you the path where python is installed
 * to install gpio support type command sudo apt-get install python-rpi.gpio
 * use python3-rpi.gpio for python 3
 
-more details can be found <a href="https://www.raspberrypi.org/documentation/usage/python/more.md">here</a>
+more details can be found at <https://www.raspberrypi.org/documentation/usage/python/more.md>
 
 ### Some elementary python
 * open terminal on raspbery pi and type python to open python2 shell
 * now you can use python shell to run commands like
+
 '''
 >>> x = 1 + 2
 >>> y = x + 2
