@@ -32,13 +32,13 @@ more details can be found at <https://www.raspberrypi.org/documentation/usage/py
 * open terminal on raspbery pi and type python to open python2 shell
 * now you can use python shell to run commands like
 
-'''
+```
 >>> x = 1 + 2
 >>> y = x + 2
 >>> print y
 5
 >>> 
-'''
+```
 
 ### Getting on wifi
 To connect to the internet using raspberry pis wifi, 
